@@ -1,0 +1,97 @@
+/**
+ * Black theme for reveal.js. This is the opposite of the 'white' theme.
+ *
+ * By Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+@import url(./fonts/source-sans-pro/source-sans-pro.css);
+
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #191919;
+
+$mainColor: #fff;
+$headingColor: #fff;
+
+$mainFontSize: 42px;
+$mainFont: 'Google Sans', 'Source Sans Pro', Helvetica, sans-serif;
+$headingFont: 'Google Sans', 'Source Sans Pro', Helvetica, sans-serif;
+$headingLetterSpacing: normal;
+$headingTextTransform: none;
+$headingFontWeight: 400;
+$linkColor: #42affa;
+$linkColorHover: lighten( $linkColor, 15% );
+$selectionBackgroundColor: lighten( $linkColor, 25% );
+
+$heading1Size: 2em;
+$heading2Size: 1.4em;
+$heading3Size: 1.1em;
+$heading4Size: 1.0em;
+
+// Change text colors against light slide backgrounds
+@include light-bg-text-color(#222);
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+// My styles
+
+.absolute {
+    position: absolute !important;
+}
+
+@property --shadow-color {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: #3e6fa2;
+}
+
+@property --shadow-color-light {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: white;
+}
+
+// Inspo: Sarah Fossheim
+// https://codepen.io/fossheim/pen/PoqKoLY
+.reveal .glow {
+    --shadow-color: #3e6fa2;
+    --shadow-color-light: white;
+    text-shadow: 
+    0 0 3px var(--shadow-color-light), 0 0 10px var(--shadow-color-light), 0 0 20px var(--shadow-color-light),
+    0 0 30px var(--shadow-color), 0 0 40px var(--shadow-color), 0 0 50px var(--shadow-color), 0 0 70px var(--shadow-color), 0 0 50px var(--shadow-color), 0 0 100px var(--shadow-color);
+    animation: glow 5s infinite alternate;
+}
+
+@keyframes glow {
+    50% {
+        --shadow-color: #27507c;
+        --shadow-color-light: white;
+    }
+    100% {
+        --shadow-color: #b296ff;
+        --shadow-color-light: #fcffe2;
+    }
+}
+
+.reveal .star {
+    font-size: 2.2em;
+    animation: glow 2s infinite alternate;
+}
+
+.reveal .star2 {
+    line-height: 0;
+    top: -1em;
+    right: 1em;
+    font-size: 1em;
+    animation: glow 2s infinite alternate-reverse;
+}
