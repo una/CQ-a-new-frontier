@@ -409,8 +409,9 @@ section.has-light-background, section.has-light-background h1, section.has-light
 .reveal .resize {
   overflow: hidden;
   resize: both;
-  border: 4px solid #b3d9ea;
+  border: 4px solid thistle;
   padding: 0.5rem;
+  margin: 0 auto;
 }
 
 .reveal .demo-link {
@@ -421,4 +422,9 @@ section.has-light-background, section.has-light-background h1, section.has-light
 .reveal img, .reveal video, .reveal iframe {
   max-width: 100%;
   max-height: 100%;
+}
+
+.reveal *::selection {
+  background-color: #b296ff;
+  color: black;
 }

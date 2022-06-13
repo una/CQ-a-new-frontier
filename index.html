@@ -22,16 +22,29 @@
 					<div class="absolute glow star2">.</div>
 					<div>
 						<h1 class="glow">Container Queries:<br/> the New Frontier</h1>
-						<h3 class="fragment">Una Kravets | @una</h3>
+						<h3>Una Kravets | @una | #DevFestForUkraine 🇺🇦</h3>
 					</div>
 				</section>
+
 				<section>
-					<ul class="grid-3x">
-						<li><img src="img/chrome-logo.png" alt=""></li>
-						<li><img src="img/oui-logo.png" alt=""></li>
-						<li><img src="img/space-stylesheets.png" alt=""></li>
+					<ul class="grid-3x" style="gap: 2rem">
+						<li><img src="img/Flag_of_Ukraine.svg.png" style="width: 90%; margin: 0 auto" alt=""></li>
+						<li class="fragment"><img src="img/chrome-logo.png" alt=""></li>
+						<li class="fragment"><img src="img/oui-logo.png" alt=""></li>
 					</ul>
 					<aside class="notes">A little bit about me.</aside>
+				</section>
+				
+				<section>
+					<ul class="grid-3x" style="gap: 2rem">
+						<li><img src="img/FMjBtrDWQAMqFlo.jpeg" alt=""></li>
+						<li><img src="img/FMjBtrFXwAUHPgq.jpeg" alt=""></li>
+						<li><img src="img/FMjBtrpWQAU2SMV.jpeg" alt=""></li>
+					</ul>
+				</section>
+
+				<section>
+					<img src="img/space-stylesheets.png" style="max-width: 80%" alt="">
 				</section>
 				<section data-background-image="img/niketh-vellanki-QkSN_8XcXwQ-unsplash.jpg">
 					<aside class="notes">And a little bit about you. You might feel lost, floating in outter space as all of these new CSS features land</aside>
@@ -65,12 +78,154 @@
 					</div>
 					<a class="demo-link" href="https://codepen.io/una/pen/mdOgyVL">Codepen Link</a>
 				</section>
+
+				<section>
+					<h2>Anatomy of a container query</h2>
+				</section>
+				
 				<section>
 					<div class="resize" style="height: 600px">
 						<iframe style="background: white;" width=100% height=100% src="https://codepen.io/una/debug/wvyXQXY" frameborder="0"></iframe>
 					</div>
 					<a class="demo-link" href="https://codepen.io/una/pen/wvyXQXY">Codepen Link</a>
 				</section>
+
+				<section>
+					<h2>Step 1: Set Containment on the parent</h2>
+				</section>
+
+				<section>
+					<pre><code class="css">
+						.parent {
+							container-type: inline-size;
+						}
+					</code></pre>
+				</section>
+
+				<section>
+					<img src="img/mLz4eB2iG7yGUJ92DA0D.avif" alt="">
+				</section>
+
+				<section>
+					<img src="img/NcIz3jADhMnRMqRTUPKr.avif" alt="">
+				</section>
+
+				<section>
+					<h2>Step 2: Query the parent</h2>
+				</section>
+
+				<section>
+					<pre><code class="css">
+						@container (max-width: 400px) {
+							.card {
+								// child styles when the parent is < 400px wide
+							}
+						}
+					</code></pre>
+				</section>
+
+				<section>
+					<pre><code class="css">
+						@container (max-width: 400px) {
+							.card {
+								grid-template-columns: 1fr;
+							}
+						}
+					</code></pre>
+				</section>
+
+				<section>
+					<pre><code class="css">
+						/* Default styles (wide) */
+						.card {
+							display: grid;
+							grid-template-columns: 1fr 1fr;
+						}
+
+						/* Adjusted styles (narrow) */
+						@container (max-width: 400px) {
+							.card {
+								grid-template-columns: 1fr;
+							}
+						}
+					</code></pre>
+				</section>
+
+				<section>
+					<pre><code class="css">
+						/* Default styles (narrow) */
+						.card {
+							display: grid;
+							grid-template-columns: 1fr;
+						}
+
+						/* Adjusted styles (wide) */
+						@container (min-width: 400px) {
+							.card {
+								grid-template-columns: 1fr 1fr;
+							}
+						}
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Can't you do that with a media query?</h2>
+				</section>
+
+				<section>
+					<img src="img/cq-gen-illi.png" alt="">
+				</section>
+
+				<section>
+					<div class="resize" style="height: 600px">
+						<iframe style="background: white;" width=100% height=100% src="https://codepen.io/una/debug/XWZodbm" frameborder="0"></iframe>
+					</div>
+					<a class="demo-link" href="https://codepen.io/una/debug/XWZodbm">Codepen Link</a>
+				</section>
+
+				<section>
+					<h2>Named Containers</h2>
+				</section>
+
+				<section>
+					<h3>Named containers</h3>
+					<pre><code class="css">
+						.parent {
+							container-type: inline-size;
+							container-name: card-parent;
+						}
+					</code></pre>
+				</section>
+
+				<section>
+					<h3><code>container</code> shorthand</h3>
+					<pre><code class="css">
+						.parent {
+							container: card-parent / inline-size;
+						}
+					</code></pre>
+				</section>
+
+				<section>
+					<pre><code class="css">
+						.card {
+							display: grid;
+							grid-template-columns: 1fr;
+						}
+
+						/* More explicit with container-name */
+						@container card-parent (min-width: 400px) {
+							.card {
+								grid-template-columns: 1fr 1fr;
+							}
+						}
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Container Queries + <code>:has()</code> = a dream made in responsive heaven</h2>
+				</section>
+
 				<section>
 					<div class="resize" style="height: 600px">
 						<iframe style="background: white;" width=100% height=100% src="https://codepen.io/una/debug/WNMyYBB" frameborder="0"></iframe>
@@ -78,14 +233,176 @@
 					<a class="demo-link" href="https://codepen.io/una/pen/WNMyYBB">Codepen Link</a>
 				</section>
 
-				<!--  -->
+				<section>
+					<h2>Fluid typography</h2>
+				</section>
+
+				<section>
+					<h3>Fluid typography using <code>clamp()</code></h3>
+					<pre><code class="language-css">
+						h1 {
+							font-size: clamp(minValue, actualValue, maxValue);
+						}
+					</code></pre>
+				</section>
+
+				<section>
+					<img src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/121943ab-55fa-4315-a0b0-e9283b2be0a3/3-modern-fluid-typography-css-clamp.png" alt="">
+					<a class="demo-link" href="https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/">Fluid typography article by Adrian Bece</a>
+				</section>
+
+				<section>
+					<h3>Fluid typography using <code>clamp()</code></h3>
+					<pre><code class="language-css">
+						h1 {
+							font-size: clamp(2rem, 10vw, 4rem);
+						}
+					</code></pre>
+				</section>
+
+				<section>
+					<div class="resize" style="height: 600px">
+						<iframe style="background: white;" width=100% height=100% src="https://codepen.io/una/debug/VwQqjzN" frameborder="0"></iframe>
+					</div>
+					<a class="demo-link" href="https://codepen.io/una/pen/VwQqjzN">Codepen Link</a>
+				</section>
+
+				<section>
+					<h2>Container-based Units</h2>
+				</section>
+
+				<section>
+					<table><thead><tr><th>unit</th><th>relative to</th></tr></thead><tbody><tr><td><code>cqw</code></td><td>1% of a query container’s width</td></tr><tr><td><code>cqh</code></td><td>1% of a query container’s height</td></tr><tr><td><code>cqi</code></td><td>1% of a query container’s inline size</td></tr><tr><td><code>cqb</code></td><td>1% of a query container’s block size</td></tr><tr><td><code>cqmin</code></td><td>The smaller value of qi or qb</td></tr><tr><td><code>cqmax</code></td><td>The larger value of qi or qb</td></tr></tbody></table>
+				</section>
+
+				<section>
+					<div class="resize" style="height: 600px">
+						<iframe style="background: white;" width=100% height=100% src="https://codepen.io/una/debug/eYVbzGy" frameborder="0"></iframe>
+					</div>
+					<a class="demo-link" href="https://codepen.io/una/pen/eYVbzGy">Codepen Link</a>
+				</section>
+
+				<section>
+					<div class="resize" style="height: 600px">
+						<iframe style="background: white;" width=100% height=100% src="https://codepen.io/una/debug/abqPdQv" frameborder="0"></iframe>
+					</div>
+					<a class="demo-link" href="https://codepen.io/una/debug/abqPdQv">Codepen Link</a>
+				</section>
+
+				<section>
+					<h2>Style Queries (future)</h2>
+				</section>
+
+				<section>
+					<div class="resize" style="height: 600px">
+						<iframe style="background: white;" width=100% height=100% src="https://codepen.io/una/debug/abqKvXW" frameborder="0"></iframe>
+					</div>
+					<a class="demo-link" href="https://codepen.io/una/debug/abqKvXW">Codepen Link</a>
+				</section>
+
+
+				<section>
+					<h2>State Queries (further future)</h2>
+				</section>
+
+				<section>
+					<ul>
+						<li><code>:is-stuck</code></li>
+						<li class="fragment"><code>:snapped</code></li>
+						<li class="fragment"><code>position-set-1</code></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Combining Queries</h2>
+				</section>
+
+				<section>
+					<h3>Combinator queries</h3>
+					<pre><code class="css">
+						@container card (inline-size > 30em) and (--responsive = true) {
+							/* styles */
+						}
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Container Queries In Production</h2>
+				</section>
+
+				<section>
+					<h2>Support</h2>
+						<ul class="grid-3x">
+							<li>
+								<img width=80% src="img/chrome-logo.png" alt="">
+								<p>Chromium (🏁)</p>
+							</li>
+							<li>
+								<img width=80% src="img/Safari_browser_logo.svg" alt="">
+								<p>Webkit TP (16+)</p>
+							</li>
+							<li>
+								<img width=80% src="img/Firefox_logo.svg" alt="">
+								<p>Gecko (polyfill)</p>
+							</li>
+						</ul>
+				</section>
+
+				<section>
+					<div class="resize" style="height: 600px">
+						<iframe style="background: white;" width=100% height=100% src="https://chromeos.dev" frameborder="0"></iframe>
+					</div>
+					<a class="demo-link" href="https://chromeos.dev">ChromeOS.dev</a>
+				</section>
+
+				<section>
+					<div class="resize" style="height: 600px">
+						<iframe style="background: white;" width=100% height=100% src="https://designcember.com" frameborder="0"></iframe>
+					</div>
+					<a class="demo-link" href="https://designcember.com">designcember.com</a>
+				</section>
+
+				<section>
+					<h2>Container Query Polyfill</h2>
+					<p>github.com/GoogleChromeLabs/container-query-polyfill</p>
+				</section>
+
+				<section>
+					<div class="resize" style="height: 600px">
+						<iframe style="background: white;" width=100% height=100% src="https://github.com/GoogleChromeLabs/container-query-polyfill" frameborder="0"></iframe>
+					</div>
+					<a class="demo-link" href="https://github.com/GoogleChromeLabs/container-query-polyfill">Container Query Polyfill</a>
+				</section>
+
+				<section>
+					<h2>Container queries are useful anywhere you have reusable components</h2>
+				</section>
+
+				<section data-transition="none">
+					<img src="img/bustle-homepage.png" alt="">
+					<aside class="notes">what this might look like on a production site. Bustle doesn't actually use CQ (yet) but I thought it was a good example of modular design</aside>
+				</section>
+
+				<section data-transition="none">
+					<img src="img/bustle-containers-marked-up.png" alt="">
+				</section>
+
+				<section>
+					<h2>Intrinsic logical styles</h2>
+				</section>
+
+				<section>
+					<h2>Component-based web architecture</h2>
+				</section>
 
 				<!-- Last Slide -->
 				<section>
-					<h2>Attributions:</h2>
-					<ul>
+					<h2>Thank you!</h2>
+					<h3>Una Kravets | @una</h3>
+					<small><ul>
 						<li>Photos from unsplash.com</li>
-					</ul>
+						<li>Spec writing led by Miriam Suzanne</li>
+					</ul></small>
 				</section>
 			</div>
 		</div>
@@ -100,6 +417,10 @@
 			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
+				transition: 'fade',
+				backgroundTransition: 'fade',
+				width: 1200,
+				height: 900,
 
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
